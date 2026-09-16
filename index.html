@@ -3,108 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>From budget to reporting</title>
+<title>From Budget To Reporting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* ConTech Solutions brand guidelines V1, 18 November 2024
+   Primary #504F4D, Secondary #F79B55, Accent #2F80ED, Greys #333333 #4F4F4F #828282 #BDBDBD #E0E0E0, Blacks #000000 #1D1D1D #282828
+   Headings: Open Sans, line height 1.1x. Body: Titillium Web, line height 1.4x. */
 :root{
-  --bg:#F3F4F2;--panel:#FFFFFF;--ink:#1C2530;--muted:#56606B;--line:#C9CED3;
-  --a1:#2D6A9F;--a2:#2E7D4F;--a3:#A0611A;--a4:#5B4F9A;--a5:#1E6F72;--hand:#B94E0E;
-  --focus:#2D6A9F;
+  --bg:#FFFFFF;--panel:#FFFFFF;--ink:#333333;--head:#504F4D;--muted:#4F4F4F;--faint:#828282;--line:#E0E0E0;--line2:#BDBDBD;
+  --brand:#504F4D;--orange:#F79B55;--blue:#2F80ED;--excel:#828282;--ontext:#282828;
+  --focus:#2F80ED;
+  --s1:#1E7B45;--s2:#2F80ED;--s3:#7A4CC2;--s4:#C62E4E;--s5:#0A8F9E;--pill:#FFFFFF;
+  --fh:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --fb:"Titillium Web","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#14181C;--panel:#1D2328;--ink:#E8ECEF;--muted:#A3ADB6;--line:#3A444E;
-    --a1:#72A9DB;--a2:#62BD87;--a3:#DB9E52;--a4:#A197DE;--a5:#5CB9BB;--hand:#EC8A47;--focus:#72A9DB;
+    --bg:#1D1D1D;--panel:#282828;--ink:#E0E0E0;--head:#FFFFFF;--muted:#BDBDBD;--faint:#BDBDBD;--line:#4F4F4F;--line2:#828282;
+    --brand:#BDBDBD;--excel:#828282;
+    --s1:#4CC27F;--s2:#5A9CF2;--s3:#A884E6;--s4:#F06A84;--s5:#3CC3CF;--pill:#1D1D1D;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#14181C;--panel:#1D2328;--ink:#E8ECEF;--muted:#A3ADB6;--line:#3A444E;
-  --a1:#72A9DB;--a2:#62BD87;--a3:#DB9E52;--a4:#A197DE;--a5:#5CB9BB;--hand:#EC8A47;--focus:#72A9DB;
+  --bg:#1D1D1D;--panel:#282828;--ink:#E0E0E0;--head:#FFFFFF;--muted:#BDBDBD;--faint:#BDBDBD;--line:#4F4F4F;--line2:#828282;
+  --brand:#BDBDBD;--excel:#828282;
+    --s1:#4CC27F;--s2:#5A9CF2;--s3:#A884E6;--s4:#F06A84;--s5:#3CC3CF;--pill:#1D1D1D;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.4}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 
-.top{max-width:1180px;margin:0 auto;padding:40px 24px 8px}
-.top h1{font-stretch:78%;font-weight:700;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.02;letter-spacing:-.01em;margin:0 0 10px}
-.top p{margin:0;color:var(--muted);max-width:62ch}
+.top{max-width:1180px;margin:0 auto;padding:36px 24px 12px}
+.mark{display:inline-block;background:#504F4D;color:#F79B55;font-family:var(--fh);font-weight:800;font-size:1.05rem;line-height:1;letter-spacing:.03em;padding:7px 12px 6px;border-radius:9px;margin-bottom:22px}
+.top h1{font-family:var(--fh);font-weight:700;color:var(--head);font-size:clamp(2.25rem,5.2vw,3.5rem);line-height:1.1;margin:0 0 14px}
+.top p{margin:0;color:var(--muted);font-size:1.25rem;line-height:1.4;max-width:60ch}
 
 .bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.bar-in{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.btn{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.93rem}
-.btn:hover{border-color:var(--muted)}
-.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bar-in{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line2);background:var(--panel);color:var(--head);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:1rem;font-weight:600;line-height:1.4}
+.btn:hover{border-color:var(--head)}
+.btn.cta{background:var(--orange);color:var(--ontext);border-color:var(--orange);font-size:1.125rem;font-weight:700;padding:11px 28px}
+.btn.cta:hover{background:#504F4D;border-color:#504F4D;color:#F79B55}
 .btn[hidden]{display:none}
-.progress{margin-left:auto;font-size:.9rem;color:var(--muted)}
+.progress{margin-left:auto;font-size:1rem;color:var(--muted)}
 
-.layout{max-width:1180px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+.layout{max-width:1180px;margin:0 auto;padding:28px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
 
-.stage{--accent:var(--a1);display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;position:relative}
-.stage + .stage{margin-top:0}
-.rail{border-left:4px solid var(--accent);padding:4px 0 24px 14px}
+.stage{--accent:var(--brand);display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;position:relative}
+.rail{border-left:6px solid var(--accent);padding:2px 0 26px 16px}
 .rail button{all:unset;cursor:pointer;display:block;border-radius:4px}
 .rail button:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
-.rail .num{font-stretch:75%;font-weight:700;font-size:.95rem;color:var(--accent)}
-.rail h2{font-stretch:80%;font-weight:700;font-size:1.35rem;line-height:1.1;margin:2px 0 6px}
-.rail .tags{margin:0;padding:0;list-style:none;font-size:.85rem;color:var(--muted)}
-.rail button:hover h2{text-decoration:underline;text-underline-offset:3px}
+.rail .num{display:inline-block;font-family:var(--fb);font-weight:700;font-size:1.125rem;line-height:1.4;color:var(--pill);background:var(--accent);padding:2px 12px;border-radius:6px;margin-bottom:6px}
+.rail h2{font-family:var(--fh);font-weight:700;color:var(--accent);font-size:2rem;line-height:1.1;margin:2px 0 8px}
+.rail .lead{display:block;font-size:1.125rem;line-height:1.4;font-weight:600;color:var(--head);margin:0 0 2px}
+.rail .tags{margin:0;padding:0;list-style:none;font-size:1.125rem;line-height:1.4;color:var(--muted)}
+.rail button:hover h2{text-decoration:underline;text-underline-offset:4px}
 
 .steps{list-style:none;margin:0;padding:0 0 8px}
 .steps li{position:relative;padding-bottom:30px}
-.steps li::after{content:"";position:absolute;left:28px;top:calc(100% - 30px);height:30px;border-left:2px solid var(--line)}
-.steps li::before{content:"";position:absolute;left:23px;bottom:0;border:6px solid transparent;border-top:7px solid var(--line);border-bottom:0}
+.steps li::after{content:"";position:absolute;left:29px;top:calc(100% - 30px);height:30px;border-left:2px solid var(--line2)}
+.steps li::before{content:"";position:absolute;left:24px;bottom:0;border:6px solid transparent;border-top:7px solid var(--line2);border-bottom:0}
 .stage.last .steps li:last-child::after,.stage.last .steps li:last-child::before{display:none}
 
-.card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px 12px 12px;cursor:pointer;transition:opacity .25s,border-color .2s,box-shadow .2s}
+.card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 12px;cursor:pointer;transition:opacity .25s,border-color .2s,box-shadow .2s,background-color .2s}
 .card:hover{border-color:var(--accent)}
-.card .n{display:inline-grid;place-items:center;min-width:32px;height:32px;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent);font-weight:600;font-size:.85rem}
-.card .t{font-weight:600;line-height:1.3;display:block}
-.card .s{display:block;color:var(--muted);font-size:.9rem;margin-top:2px}
-.card.hand{border-color:var(--hand);background:color-mix(in srgb,var(--hand) 9%,var(--panel))}
-.card.hand .n{border-color:var(--hand);color:var(--hand)}
-.card.hand .s{color:var(--ink)}
-.card.big{border-width:1.5px;border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
-.chain{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:6px;font-size:.88rem}
-.chain span{padding:1px 8px;border-radius:4px;background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
-.chain i{font-style:normal;color:var(--muted)}
-.flag{display:inline-block;margin-top:8px;font-size:.8rem;color:var(--hand);border:1px solid color-mix(in srgb,var(--hand) 45%,transparent);border-radius:4px;padding:0 6px}
+.card .n{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);color:var(--head);font-family:var(--fh);font-weight:700;font-size:.875rem}
+.card .t{font-weight:700;font-size:1.125rem;line-height:1.4;color:var(--head);display:block}
+.card .s{display:block;color:var(--muted);font-size:1rem;line-height:1.4;margin-top:1px}
+.card.hand{border:1.5px solid var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--panel))}
+.card.hand .n{border-color:var(--blue)}
+.card.big{border-width:1.5px;border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--panel))}
+.chain{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:6px;font-size:.875rem;line-height:1.4}
+.chain span{padding:1px 8px;border-radius:4px;background:color-mix(in srgb,var(--brand) 10%,var(--panel));color:var(--ink)}
+.chain i{font-style:normal;color:var(--faint)}
+.flag{display:inline-block;margin-top:8px;font-size:.875rem;color:var(--head);border:1.5px solid var(--orange);border-radius:4px;padding:0 6px}
 
 .feedrow{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,.72fr);align-items:center}
-.feedline{height:2px;background:var(--line);position:relative}
-.feedline::before{content:"";position:absolute;left:-2px;top:-6px;border:7px solid transparent;border-right:8px solid var(--line);border-left:0}
-.card.feeder{border-style:dashed}
-
-.handover{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px}
+.feedline{height:2px;background:var(--line2);position:relative}
+.feedline::before{content:"";position:absolute;left:-2px;top:-6px;border:7px solid transparent;border-right:8px solid var(--line2);border-left:0}
+.card.feeder{border-style:dashed;border-color:var(--line2)}
 
 .flow.walking .card{opacity:.32}
 .flow.walking .card.seen{opacity:1}
-.card.current{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 55%,transparent);border-color:var(--accent);opacity:1!important}
-.card.hand.current{box-shadow:0 0 0 3px color-mix(in srgb,var(--hand) 55%,transparent)}
+.card.current,.card.selected{background:color-mix(in srgb,var(--orange) 18%,var(--panel));border:2px solid var(--orange);box-shadow:0 0 0 4px color-mix(in srgb,var(--orange) 35%,transparent);opacity:1!important}
+.card.current .n,.card.selected .n{background:var(--orange);border-color:var(--orange);color:var(--ontext)}
+.rail button.selected h2{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:4px;text-underline-offset:6px}
 .flow.walking .rail{opacity:.4;transition:opacity .25s}
 .flow.walking .stage.inview .rail{opacity:1}
 
-.detail{position:sticky;top:76px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--dacc,var(--ink));border-radius:8px;padding:18px 20px;max-height:calc(100vh - 100px);overflow:auto}
-.detail .where{font-size:.85rem;color:var(--muted);margin:0 0 4px}
-.detail h3{font-stretch:82%;font-weight:700;font-size:1.3rem;line-height:1.15;margin:0 0 10px}
+.dcol{position:relative;align-self:stretch}
+.detail{position:absolute;left:0;right:0;top:0;transition:top .35s ease,background-color .2s;background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--dacc,var(--brand));border-radius:10px;padding:18px 20px}
+.detail.active{border:2px solid var(--orange);border-top:6px solid var(--orange);background:color-mix(in srgb,var(--orange) 8%,var(--panel));box-shadow:0 0 0 4px color-mix(in srgb,var(--orange) 22%,transparent)}
+.detail .where{font-size:.875rem;line-height:1.4;color:var(--muted);margin:0 0 4px}
+.detail h3{font-family:var(--fh);font-weight:700;color:var(--head);font-size:1.5rem;line-height:1.1;margin:0 0 12px}
 .detail p{margin:0 0 10px}
-.detail h4{font-size:.95rem;margin:14px 0 4px}
+.detail h4{font-family:var(--fh);font-weight:700;color:var(--head);font-size:1.25rem;line-height:1.1;margin:16px 0 6px}
 .detail ul,.detail ol{margin:0 0 8px;padding-left:20px}
 .detail li{margin:2px 0}
-.detail .note{font-size:.88rem;border-left:3px solid var(--hand);padding:6px 10px;background:color-mix(in srgb,var(--hand) 8%,var(--panel));margin-top:12px}
-.detail .hint{color:var(--muted);font-size:.9rem}
+.detail .note{font-size:.875rem;line-height:1.4;border-left:4px solid var(--orange);padding:6px 10px;background:color-mix(in srgb,var(--orange) 10%,var(--panel));margin-top:12px}
+.detail .hint{color:var(--muted);font-size:.875rem}
+
+.foot{max-width:1180px;margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.875rem}
+.foot .mark{margin:0;font-size:.8rem;padding:5px 9px 4px;border-radius:7px}
 
 @media (max-width:900px){
   .layout{grid-template-columns:minmax(0,1fr)}
-  .detail{position:sticky;bottom:0;top:auto;max-height:42vh;border-radius:8px 8px 0 0;order:2}
+  .dcol{position:sticky;bottom:0;align-self:auto;order:2}
+  .detail{position:static;max-height:42vh;overflow:auto;border-radius:10px 10px 0 0}
 }
 @media (max-width:640px){
-  .stage,.handover{grid-template-columns:minmax(0,1fr);gap:8px}
+  .stage{grid-template-columns:minmax(0,1fr);gap:8px}
   .rail{padding-bottom:10px}
+  .rail h2{font-size:1.5rem}
+  .top p{font-size:1.125rem}
   .feedrow{grid-template-columns:minmax(0,1fr)}
   .feedline{display:none}
   .feedrow .card.feeder{margin-top:10px}
@@ -115,14 +131,15 @@ button{font:inherit;color:inherit}
 <body>
 
 <header class="top">
-  <h1>From budget to reporting</h1>
-  <p>How a project budget moves from Excel into WorkflowMax, is costed against as work happens, and becomes the base for reporting. Select any step for details, or walk through it in order.</p>
+  <span class="mark" role="img" aria-label="ConTech Solutions">CONTECH</span>
+  <h1>From Budget To Reporting</h1>
+  <p>Excel is great for building a budget. It's not the place to run one. Here's how a project budget moves from Excel into WorkflowMax, gets costed against as work happens, and becomes the base for reporting. Pick any step for the detail, or walk through it in order.</p>
 </header>
 
 <div class="bar"><div class="bar-in">
-  <button class="btn primary" id="bStart">Start walk-through</button>
+  <button class="btn cta" id="bStart">Start walk-through</button>
   <button class="btn" id="bPrev" hidden>Previous</button>
-  <button class="btn" id="bNext" hidden>Next</button>
+  <button class="btn cta" id="bNext" hidden>Next</button>
   <button class="btn" id="bAll" hidden>Show everything</button>
   <span class="progress" id="prog" aria-live="polite"></span>
 </div></div>
@@ -130,29 +147,29 @@ button{font:inherit;color:inherit}
 <main class="layout">
 <div class="flow" id="flow">
 
-  <section class="stage" style="--accent:var(--a1)" data-stage="st1">
-    <div class="rail"><button data-id="st1"><span class="num">Stage one</span><h2>Excel</h2><ul class="tags"><li>Budget building</li><li>Feasibility</li><li>What if?</li></ul></button></div>
+  <section class="stage" style="--accent:var(--s1)" data-stage="st1">
+    <div class="rail"><button data-id="st1"><span class="num">Stage One</span><h2>Excel</h2><span class="lead">Continue to use Excel for</span><ul class="tags"><li>Initial Budget Building</li><li>Feasibility Analysis</li><li>Scenario Planning</li></ul></button></div>
     <ol class="steps">
       <li><button class="card" data-id="s1"><span class="n">1</span><span><span class="t">Original feasibility budget</span></span></button></li>
       <li><button class="card" data-id="s2"><span class="n">2</span><span><span class="t">Tender budget</span></span></button></li>
       <li><button class="card" data-id="s3"><span class="n">3</span><span><span class="t">Contract budget</span></span></button></li>
       <li><button class="card" data-id="s4"><span class="n">4</span><span><span class="t">Locked-in budget</span></span></button></li>
-      <li><button class="card hand" data-id="s5"><span class="n">5</span><span><span class="t">"Weaponised" Excel</span><span class="s">One-click budget upload to WorkflowMax</span></span></button></li>
+      <li><button class="card hand" data-id="s5"><span class="n">5</span><span><span class="t">"Weaponised" Excel</span><span class="s">One-click budget upload using WorkflowMax's MCP server</span></span></button></li>
     </ol>
   </section>
 
-  <section class="stage" style="--accent:var(--a2)" data-stage="st2">
-    <div class="rail"><button data-id="st2"><span class="num">Stage two</span><h2>WorkflowMax</h2><ul class="tags"><li>The single source of truth</li></ul></button></div>
+  <section class="stage" style="--accent:var(--s2)" data-stage="st2">
+    <div class="rail"><button data-id="st2"><span class="num">Stage Two</span><h2>WorkflowMax</h2><ul class="tags"><li>The single source of truth</li></ul></button></div>
     <ol class="steps">
-      <li><button class="card big" data-id="s6"><span class="n">6</span><span><span class="t">Locked-in budget in WorkflowMax</span><span class="s">One phase per budget line. Everything linked to a budget line is stored against its phase, so everything can be reported on.</span></span></button></li>
+      <li><button class="card big" data-id="s6"><span class="n">6</span><span><span class="t">Locked-in budget in WorkflowMax</span><span class="s">One phase per budget line. Everything linked to a budget line is stored against its phase, so everything can be reported on, from a high level to a very granular level.</span></span></button></li>
     </ol>
   </section>
 
-  <section class="stage" style="--accent:var(--a3)" data-stage="st3">
-    <div class="rail"><button data-id="st3"><span class="num">Stage two</span><h2>Back costing</h2><ul class="tags"><li>Actual costs</li><li>Committed costs</li></ul></button></div>
+  <section class="stage" style="--accent:var(--s3)" data-stage="st3">
+    <div class="rail"><button data-id="st3"><span class="num">Stage Three</span><h2>Back costing</h2><ul class="tags"><li>Actual costs</li><li>Committed costs</li></ul></button></div>
     <ol class="steps">
       <li><button class="card" data-id="s7"><span class="n">7</span><span><span class="t">Purchase orders issued</span><span class="s">For each locked-in contract or budget line</span></span></button></li>
-      <li><button class="card" data-id="s8"><span class="n">8</span><span><span class="t">Actual costs</span><span class="s">Purchase orders as per contract</span></span></button></li>
+      <li><button class="card" data-id="s8"><span class="n">8</span><span><span class="t">Actual costs</span><span class="s">Purchase orders as per contract, tracked and approved using ApprovalMax</span></span></button></li>
       <li>
         <div class="feedrow">
           <button class="card" data-id="s9"><span class="n">9</span><span><span class="t">Actual costs</span><span class="s">Payment documents</span>
@@ -166,23 +183,24 @@ button{font:inherit;color:inherit}
     </ol>
   </section>
 
-  <section class="stage" style="--accent:var(--a4)" data-stage="st4">
-    <div class="rail"><button data-id="st4"><span class="num">Stage two</span><h2>Variations</h2><ul class="tags"><li>Anticipated variations</li><li>Committed variations</li></ul></button></div>
+  <section class="stage" style="--accent:var(--s4)" data-stage="st4">
+    <div class="rail"><button data-id="st4"><span class="num">Stage Four</span><h2>Variations</h2><ul class="tags"><li>Anticipated variations</li><li>Committed variations</li></ul></button></div>
     <ol class="steps">
       <li><button class="card" data-id="s11"><span class="n">11</span><span><span class="t">Anticipated costs</span><span class="s">Draft variations</span></span></button></li>
       <li><button class="card" data-id="s12"><span class="n">12</span><span><span class="t">Committed variation</span><span class="s">Issued purchase order</span></span></button></li>
     </ol>
   </section>
 
-  <section class="stage last" style="--accent:var(--a5)" data-stage="st5">
-    <div class="rail"><button data-id="st5"><span class="num">Outcome</span><h2>Reporting</h2><ul class="tags"><li>Any report</li><li>Any way you want it</li></ul></button></div>
+  <section class="stage last" style="--accent:var(--s5)" data-stage="st5">
+    <div class="rail"><button data-id="st5"><span class="num">Stage Five</span><h2>Reporting</h2><ul class="tags"><li>Any report</li><li>Any way you want it</li></ul></button></div>
     <ol class="steps">
-      <li><button class="card big" data-id="s13"><span class="n">13</span><span><span class="t">Reporting</span><span class="s">The process and data points above make reporting on anything, any way you want it, possible.</span></span></button></li>
+      <li><button class="card big" data-id="s13"><span class="n">13</span><span><span class="t">Reporting</span><span class="s">The above process, along with the accurate collection of all data points in WorkflowMax Phases, enables premium quality reporting – any way you want it.</span></span></button></li>
     </ol>
   </section>
 
 </div>
 
+<div class="dcol" id="dcol">
 <aside class="detail" id="detail" aria-live="polite">
   <p class="where" id="dWhere">Overview</p>
   <h3 id="dTitle">Five stages, one source of truth</h3>
@@ -191,61 +209,85 @@ button{font:inherit;color:inherit}
     <p class="hint">Select a stage name or a step to see more here.</p>
   </div>
 </aside>
+</div>
 </main>
+<footer class="foot"><span class="mark" aria-hidden="true">CONTECH</span><span>ConTech Solutions. Digitalising Construction.</span></footer>
 
 <script>
-const ACC={st1:'--a1',st2:'--a2',st3:'--a3',st4:'--a4',st5:'--a5'};
+const ACC={st1:'--s1',st2:'--s2',st3:'--s3',st4:'--s4',st5:'--s5'};
 const D={
- st1:{st:'st1',w:'Stage one',t:'Excel: building the budget',b:`<p>Excel is great in the early stages of budget building. It is not a good single source of truth.</p>
+ st1:{st:'st1',w:'Stage One',t:'Excel: building the budget',b:`<p>Excel is great in the early stages of budget building. It is not a good single source of truth.</p>
   <h4>Good</h4><ul><li>Familiar</li><li>Easy to edit</li><li>Flexible</li><li>What-if analysis</li><li>Feasibility</li></ul>
   <h4>Bad</h4><ul><li>Versioning issues</li><li>Fallible</li><li>Incorrect formulas</li><li>Overwritten formulas</li><li>Incorrect cell references</li><li>Hard-coded numbers</li><li>Hidden rows or columns</li><li>No audit trail</li></ul>`},
- s1:{st:'st1',w:'Stage one: Excel',t:'Original feasibility budget',b:`<p>The first budget, used to test whether the project is feasible.</p>`},
- s2:{st:'st1',w:'Stage one: Excel',t:'Tender budget',b:`<p>The budget revised as tender pricing comes in.</p>`},
- s3:{st:'st1',w:'Stage one: Excel',t:'Contract budget',b:`<p>The budget revised to reflect the contracts awarded.</p>`},
- s4:{st:'st1',w:'Stage one: Excel',t:'Locked-in budget',b:`<p>The final agreed budget. This is the version that moves into WorkflowMax.</p>`},
- s5:{st:'st1',w:'Handover',t:'"Weaponised" Excel',b:`<p>A purpose-built Excel workbook uploads the locked-in budget to WorkflowMax in one click.</p><p>This is the handover point. From here on, Excel is no longer the working record.</p>`},
- st2:{st:'st2',w:'Stage two',t:'WorkflowMax: the single source of truth',b:`<p>Once uploaded, the budget lives in WorkflowMax. Every later step records costs against it there.</p>`},
- s6:{st:'st2',w:'Stage two: WorkflowMax',t:'Locked-in budget in WorkflowMax',b:`<p>One phase per budget line.</p><p>Everything associated with a budget line is stored against its phase. That means everything can be reported on.</p>`},
- st3:{st:'st3',w:'Stage two',t:'Back costing',b:`<p>Records actual costs and committed costs against each budget line as the project runs.</p>`},
- s7:{st:'st3',w:'Back costing',t:'Purchase orders issued',b:`<p>A purchase order is issued for each locked-in contract or budget line.</p>`},
- s8:{st:'st3',w:'Back costing',t:'Actual costs: purchase orders as per contract',b:`<p>Costs recorded against purchase orders issued in line with each contract.</p>`},
- s9:{st:'st3',w:'Back costing',t:'Actual costs: payment documents',b:`<p>Payment documents recorded against the budget line:</p><ul><li>Payment certificate</li><li>Payment schedule</li><li>Payment recommendation</li><li>Payment claim</li></ul><p>Non-contract costs also feed into this step.</p><div class="note">Open question: these are shown in the order drawn in the original. The correct sequence is still to be confirmed.</div>`},
- f9:{st:'st3',w:'Back costing',t:'Actual costs: non-contract costs',b:`<p>Costs that fall outside the contracts. As drawn in the original, they feed into the payment documents step.</p><div class="note">To be confirmed: whether non-contract costs go through the payment document steps or are recorded directly as actual costs.</div>`},
- s10:{st:'st3',w:'Back costing',t:'Committed costs: issued purchase orders',b:`<p>Purchase orders that have been issued, representing costs the project is committed to.</p>`},
- st4:{st:'st4',w:'Stage two',t:'Variations',b:`<p>Changes to the contracted scope, tracked first as anticipated, then as committed.</p>`},
- s11:{st:'st4',w:'Variations',t:'Anticipated costs: draft variations',b:`<p>Variations that are expected but not yet approved, held as drafts.</p>`},
- s12:{st:'st4',w:'Variations',t:'Committed variation: issued purchase order',b:`<p>Once a variation is approved, a purchase order is issued and the cost becomes committed.</p>`},
- st5:{st:'st5',w:'Outcome',t:'Reporting',b:`<p>Any report, any way you want it.</p>`},
- s13:{st:'st5',w:'Outcome',t:'Reporting',b:`<p>The process above, and the collection of data points it creates, make reporting on anything, any way you want it, possible.</p>
+ s1:{st:'st1',w:'Stage One: Excel',t:'Original feasibility budget',b:`<p>The first budget, used to test whether the project is feasible.</p>`},
+ s2:{st:'st1',w:'Stage One: Excel',t:'Tender budget',b:`<p>The budget revised as tender pricing comes in.</p>`},
+ s3:{st:'st1',w:'Stage One: Excel',t:'Contract budget',b:`<p>The budget revised to reflect the contracts awarded.</p>`},
+ s4:{st:'st1',w:'Stage One: Excel',t:'Locked-in budget',b:`<p>The final agreed budget. This is the version that moves into WorkflowMax.</p>`},
+ s5:{st:'st1',w:'Handover',t:'"Weaponised" Excel',b:`<p>A purpose-built Excel workbook uploads the locked-in budget in one click, using WorkflowMax\'s Model Context Protocol (MCP) server.</p><p>MCP is an open standard that lets AI assistants such as Claude connect to software like WorkflowMax.</p><p>This is the handover point. From here on, Excel is no longer the working record, and WorkflowMax becomes the single source of truth.</p>`},
+ st2:{st:'st2',w:'Stage Two',t:'WorkflowMax: the single source of truth',b:`<p>Once uploaded, the budget lives in WorkflowMax. Every later step records costs against it there.</p>`},
+ s6:{st:'st2',w:'Stage Two: WorkflowMax',t:'Locked-in budget in WorkflowMax',b:`<p>One phase per budget line.</p><p>Everything associated with a budget line is stored against its phase. That means everything can be reported on, from a high level to a very granular level.</p>`},
+ st3:{st:'st3',w:'Stage Three',t:'Back costing',b:`<p>Records actual costs and committed costs against each budget line as the project runs.</p>`},
+ s7:{st:'st3',w:'Stage Three: Back costing',t:'Purchase orders issued',b:`<p>A purchase order is issued for each locked-in contract or budget line.</p>`},
+ s8:{st:'st3',w:'Stage Three: Back costing',t:'Actual costs: purchase orders as per contract',b:`<p>Costs recorded against purchase orders issued in line with each contract.</p><p>Purchase orders are tracked and approved using ApprovalMax.</p>`},
+ s9:{st:'st3',w:'Stage Three: Back costing',t:'Actual costs: payment documents',b:`<p>Payment documents recorded against the budget line:</p><ul><li>Payment certificate</li><li>Payment schedule</li><li>Payment recommendation</li><li>Payment claim</li></ul><p>Non-contract costs also feed into this step.</p><div class="note">Open question: these are shown in the order drawn in the original. The correct sequence is still to be confirmed.</div>`},
+ f9:{st:'st3',w:'Stage Three: Back costing',t:'Actual costs: non-contract costs',b:`<p>Costs that fall outside the contracts. As drawn in the original, they feed into the payment documents step.</p><div class="note">To be confirmed: whether non-contract costs go through the payment document steps or are recorded directly as actual costs.</div>`},
+ s10:{st:'st3',w:'Stage Three: Back costing',t:'Committed costs: issued purchase orders',b:`<p>Purchase orders that have been issued, representing costs the project is committed to.</p>`},
+ st4:{st:'st4',w:'Stage Four',t:'Variations',b:`<p>Changes to the contracted scope, tracked first as anticipated, then as committed.</p>`},
+ s11:{st:'st4',w:'Stage Four: Variations',t:'Anticipated costs: draft variations',b:`<p>Variations that are expected but not yet approved, held as drafts.</p>`},
+ s12:{st:'st4',w:'Stage Four: Variations',t:'Committed variation: issued purchase order',b:`<p>Once a variation is approved, a purchase order is issued and the cost becomes committed.</p>`},
+ st5:{st:'st5',w:'Stage Five',t:'Reporting',b:`<p>Any report, any way you want it.</p>`},
+ s13:{st:'st5',w:'Stage Five: Reporting',t:'Reporting',b:`<p>The above process, along with the accurate collection of all data points in WorkflowMax Phases, enables premium quality reporting – any way you want it.</p>
   <h4>Prerequisites</h4><ol><li>WorkflowMax Advanced subscription</li><li>Model Context Protocol (MCP) connection: an open standard that lets AI assistants such as Claude connect to software like WorkflowMax</li><li>Reporting harness</li></ol>`}
 };
 const ORDER=['s1','s2','s3','s4','s5','s6','s7','s8','s9','f9','s10','s11','s12','s13'];
 const flow=document.getElementById('flow'),dW=document.getElementById('dWhere'),dT=document.getElementById('dTitle'),dB=document.getElementById('dBody'),det=document.getElementById('detail');
 const bStart=document.getElementById('bStart'),bPrev=document.getElementById('bPrev'),bNext=document.getElementById('bNext'),bAll=document.getElementById('bAll'),prog=document.getElementById('prog');
-let idx=-1;
-function show(id){const d=D[id];if(!d)return;dW.textContent=d.w;dT.textContent=d.t;dB.innerHTML=d.b;det.style.setProperty('--dacc',`var(${id==='s5'?'--hand':ACC[d.st]})`)}
+const dcol=document.getElementById('dcol');
+const desktop=window.matchMedia('(min-width:901px)');
+let idx=-1,selId=null;
+function elFor(id){return document.querySelector(`.card[data-id="${id}"]`)||document.querySelector(`.rail button[data-id="${id}"]`)}
+function place(){
+  if(!desktop.matches){det.style.top='';return}
+  const el=selId?elFor(selId):null;
+  if(!el){det.style.top='0px';return}
+  const c=dcol.getBoundingClientRect(),r=el.getBoundingClientRect();
+  const max=Math.max(0,dcol.offsetHeight-det.offsetHeight);
+  det.style.top=Math.max(0,Math.min(r.top-c.top,max))+'px';
+}
+function show(id){
+  const d=D[id];if(!d)return;selId=id;
+  dW.textContent=d.w;dT.textContent=d.t;dB.innerHTML=d.b;
+  det.style.setProperty('--dacc',`var(${id==='s5'?'--blue':ACC[d.st]})`);
+  det.classList.add('active');
+  document.querySelectorAll('[data-id]').forEach(b=>b.classList.toggle('selected',idx<0&&b.dataset.id===id));
+  place();
+}
 function render(){
   const walking=idx>=0;flow.classList.toggle('walking',walking);
   document.querySelectorAll('.card').forEach(c=>{const i=ORDER.indexOf(c.dataset.id);c.classList.toggle('seen',walking&&i<=idx);c.classList.toggle('current',walking&&i===idx)});
   document.querySelectorAll('.stage').forEach(s=>s.classList.toggle('inview',walking&&D[ORDER[idx]].st===s.dataset.stage));
   bStart.hidden=walking;bPrev.hidden=!walking;bNext.hidden=!walking;bAll.hidden=!walking;
   if(walking){
-    bPrev.disabled=false;bNext.textContent=idx===ORDER.length-1?'Finish':'Next';
+    bNext.textContent=idx===ORDER.length-1?'Finish':'Next';
     prog.textContent=`Step ${idx+1} of ${ORDER.length}`;
-    const id=ORDER[idx];show(id);
-    const el=document.querySelector(`.card[data-id="${id}"]`);
-    const r=el.getBoundingClientRect();if(r.top<80||r.bottom>window.innerHeight-40)el.scrollIntoView({block:'center'});
+    const id=ORDER[idx];
+    const el=elFor(id);const r=el.getBoundingClientRect();
+    if(r.top<120||r.bottom>window.innerHeight-40)el.scrollIntoView({block:'center'});
+    show(id);
   }else prog.textContent='';
 }
 bStart.onclick=()=>{idx=0;render()};
 bNext.onclick=()=>{if(idx<ORDER.length-1){idx++;render()}else{idx=-1;render();show('s13')}};
 bPrev.onclick=()=>{if(idx>0){idx--;render()}};
-bAll.onclick=()=>{idx=-1;render()};
+bAll.onclick=()=>{idx=-1;render();if(selId)show(selId)};
 document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{
   const id=b.dataset.id;const i=ORDER.indexOf(id);
   if(idx>=0&&i>=0){idx=i;render()}else show(id);
 }));
 document.addEventListener('keydown',e=>{if(idx<0)return;if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();bNext.click()}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();bPrev.click()}if(e.key==='Escape')bAll.click()});
+window.addEventListener('resize',place);
+if(desktop.addEventListener)desktop.addEventListener('change',place);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);
 render();
 </script>
 </body>
